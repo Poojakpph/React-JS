@@ -1,3 +1,5 @@
+//an app where we can convert a text into uppercase without reloading of the page
+
 import React, {useState} from 'react'
 
 export default function TextForm(props) {
