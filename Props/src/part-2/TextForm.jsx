@@ -21,7 +21,7 @@ export default function TextForm(props) {
      }
   
 
-   const [text, setText]= useState('Enter text here');   {/* text is state here and defualt value is Enter text here */}
+   const [text, setText]= useState('');   {/* text is state here and defualt value is Enter text here */}
   // text="new text"; // wrong way to change the state
   // setText("new text");  //correct way to change the state
   return (
