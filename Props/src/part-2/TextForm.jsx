@@ -1,5 +1,4 @@
 //an app where we can convert a text into uppercase or lowercase without reloading of the page and can get the time approximate of the user to read the words
-
 import React, {useState} from 'react'
 
 export default function TextForm(props) {
@@ -8,18 +7,22 @@ export default function TextForm(props) {
       //  we want to convert the text into uppercase so..
       let newtext=text.toUpperCase();
        setText(newtext)   
-       }
-     const handleLoClick=()=>{
-      // console.log("lower case was clicked" + text);
-     //  we want to convert the text into lowercase so..
-     let newtext=text.toLowerCase();
-      setText(newtext)   
-      }
+    }
     const handleOnChange=(event)=>{  
         // console.log("On change")
         setText(event.target.value);
      }
-  
+   const handleLoClick=()=>{
+      // console.log("lower case was clicked" + text);
+     //  we want to convert the text into lowercase so..
+     let newtext=text.toLowerCase();
+      setText(newtext)   
+   }
+
+   const handleClearClick=()=>{
+   let newtext='';
+    setText(newtext)   
+    }
 
    const [text, setText]= useState('');   {/* text is state here and defualt value is Enter text here */}
   // text="new text"; // wrong way to change the state
@@ -33,6 +36,7 @@ export default function TextForm(props) {
         </div>
         <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Uppercase</button>
         <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to Lowercase</button>
+        <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
 
    </div>
 
