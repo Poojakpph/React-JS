@@ -1,5 +1,5 @@
 //this is an application which uses state and with the help of it, we can enable dark mode and light mode 
-// make this file inside Components folder along with Navbar.jsx and TextForm.jsx file
+// make this file inside Components folder along with Navbar.jsx
 import React, { useState } from 'react'
 
 export default function About() {
