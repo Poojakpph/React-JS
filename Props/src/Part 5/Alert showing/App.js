@@ -1,50 +1,48 @@
-import React, {useState} from 'react'
+import React,{ useState } from 'react';
+import './App.css';
+// import About from './components/About';
+import Navbar from './components/Navbar';
+import TextForm from './components/TextForm';
+import Alert from './components/Alert';
 
-export default function TextForm(props) {
-    const handleUpClick=()=>{
-      let newtext=text.toUpperCase();
-       setText(newtext)   
-       props.showAlert("Converted to uppercase!", "success");
-    }
-    const handleOnChange=(event)=>{  
-        // console.log("On change")
-        setText(event.target.value);
+function App() {
+  const [mode, setMode]=useState('light');    
+  const [alert, setAlert] = useState(null);  
+
+  const showAlert=(message, type)=>{
+    setAlert({
+      msg: message,
+      type: type
+    }) 
+    // after values are set in alert, after some amount of seconds it will get dissappear and setAlert will be set as null again...so for this-->
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500); 
+  }
+
+  const toggleMode=()=>{
+    if(mode==='light'){
+        setMode('dark')
+        document.body.style.backgroundColor= '#0d283d';   
+        showAlert("Dark mode has been enabled", "success");
      }
-   const handleLoClick=()=>{
-     let newtext=text.toLowerCase();
-      setText(newtext)  
-      props.showAlert("Converted to lowercase!", "success"); 
-   }
+     else{
+       setMode('light')
+       document.body.style.backgroundColor= 'white'; 
+       showAlert("Light mode has been enabled", "success");  
+      }
+  }
 
-    const handleClearClick=()=>{
-        let newtext='';
-        setText(newtext)  
-        props.showAlert("Text is cleared", "success");  
-     }
-
-   const [text, setText]= useState('');   {/* text is state here and defualt value is Enter text here */}
   return (
     <>
-    <div className="container" style={{color: props.mode==='dark'?'white':'#0d283d'}}>
-      <h1 >{props.heading}</h1>
-        <div className="mb-3">
-            <textarea className="form-control" id="myBox" rows="14" value={text} onChange={handleOnChange}
-              style={{backgroundColor: props.mode==='dark'?'grey':'white',  color: props.mode==='dark'?'white':'#0d283d'}}>
-              </textarea>  
-        </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Uppercase</button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to Lowercase</button>
-        <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
+    <Navbar title="Textutil" aboutText="About" mode={mode} toggleMode={toggleMode}/>  {/* navbar component */}
 
-   </div>
+       <Alert alert={alert}/>   {/* alert component */}
 
-     <div className="container my-3"  style={{color: props.mode==='dark'?'white':'#0d283d'}}>
-      <h3>Your Text Summary</h3>
-      <p>{text.split(" ").length} words and {text.length} characters</p>  
-      <p>{0.008 * text.split(" ").length} minutes Time to read</p> 
-      <h2>preview</h2>
-      <p>{ text.length>0? text: "Enter something in the textbox above to preview it "}</p>
-     </div>
-   </>
-  )
+      <div className="container my-5">
+        <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/>    {/* textform component */}
+      </div>
+     </>
+  );
 }
+export default App;
