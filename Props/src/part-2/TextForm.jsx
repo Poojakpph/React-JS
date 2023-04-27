@@ -23,6 +23,18 @@ export default function TextForm(props) {
    let newtext='';
     setText(newtext)   
     }
+   
+   const countWords=(str)=>{     
+      let words;
+        if(text===""){
+            words=0;
+        }
+        else{
+          words = str.trim().split(/\s+/).length;
+        }
+        return words;
+     }
+
 
    const [text, setText]= useState('');   {/* text is state here and defualt value is Enter text here */}
   // text="new text"; // wrong way to change the state
@@ -42,7 +54,7 @@ export default function TextForm(props) {
 
      <div className="container my-3">
       <h3>Your Text Summary</h3>
-      <p>{text.split(" ").length} words and {text.length} characters</p>  
+     <p>{countWords(text)} words and {text.length} characters</p>  
       <p>{0.008 * text.split(" ").length} minutes Time to read</p> 
       <h2>preview</h2>
       <p>{text}</p>
