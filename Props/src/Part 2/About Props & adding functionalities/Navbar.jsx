@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'   //type impt
 
+
 // props- properties through which if i made a component and i want to pass or change some things then props can be used OR Props are arguments passed into React components.
 // props are a type of object where the value of attributes of a tag is stored
 //eg. here- {props.title} 
